@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import "./reset.css";
+import "./styles.css";
+import Board from "./board";
 
 function App() {
+  const theBoard = ["", "", "", "", "", "", "", "", ""];
+  const [board, setBoard] = useState(theBoard);
+  const [player, setPlayer] = useState(true);
+  const [winner, setWinner] = useState("");
+  const [disableBoard, setDisableBoard] = useState(true);
+
+  function resetBoard() {
+    setBoard(theBoard);
+    setWinner("");
+    setDisableBoard(false);
+  }
+
+  useEffect(() => {
+    resetBoard()
+  }, [])//eslint-disable-line
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="board">
+        <Board
+            setPlayer={setPlayer}
+            player={player}
+            setBoard={setBoard}
+            board={board}
+            setWinner={setWinner}
+            disableBoard={disableBoard}
+            setDisableBoard={setDisableBoard}
+          />
+      </div>
+        {player === true ? "Player 1s Turn" : "Player 2s Turn"}
+        <button onClick={resetBoard}>Reset Board</button>
+        <p>{winner}</p>
     </div>
   );
 }
