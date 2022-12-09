@@ -1,25 +1,70 @@
 .App{
-    height: 100vh;
-    width: 100vh;
-    margin: 0 auto;
-}
-
-.square{
-    padding: 13%;
-    border: 1px solid;
+    height: 95vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .board{
     display: flex;
-    width: 100%;
     flex-wrap: wrap;
-    margin: 0 auto;
+    width: 42%;
+    justify-content: center;
+    align-items: center;
+}
+
+.square{
+    padding: 13%;
+    border: 3px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.square0, .square1, .square2{
+    border-top: none;
+}
+
+.square0, .square3, .square6{
+    border-left: none;
+}
+
+.square2, .square5, .square8{
+    border-right: none
+}
+
+.square6, .square7, .square8{
+    border-bottom: none;
 }
 
 .xsAndOs{
     position:absolute;
     font-size: 8rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+.scoreboardNames{
+    width: 33%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3%;
+}
+
+.names{
+    font-size: 1.8rem;
+    font-family: monospace;
+}
+
+.scoreboardCounts{
+    width: 33%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1%;
+}
+
+.counts{
+    font-size: 2.2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
