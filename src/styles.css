@@ -1,70 +1,219 @@
-.App{
-    height: 95vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.AppLightMode {
+  height: 100vh;
+  text-align: center;
 }
 
-.board{
-    display: flex;
-    flex-wrap: wrap;
-    width: 42%;
-    justify-content: center;
-    align-items: center;
+.AppDarkMode {
+  height: 100vh;
+  color: white;
+  background-color: black;
+  text-align: center;
 }
 
-.square{
-    padding: 13%;
-    border: 3px solid;
-    display: flex;
-    justify-content: center;
-    align-items: center
+.gameConatiner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.square0, .square1, .square2{
-    border-top: none;
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 42%;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 2%;
 }
 
-.square0, .square3, .square6{
-    border-left: none;
+.square {
+  padding: 13%;
+  border: 3px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
-.square2, .square5, .square8{
-    border-right: none
+.square0,
+.square1,
+.square2 {
+  border-top: none;
 }
 
-.square6, .square7, .square8{
-    border-bottom: none;
+.square0,
+.square3,
+.square6 {
+  border-left: none;
 }
 
-.xsAndOs{
-    position:absolute;
-    font-size: 8rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.square2,
+.square5,
+.square8 {
+  border-right: none;
 }
 
-.scoreboardNames{
-    width: 33%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 3%;
+.square6,
+.square7,
+.square8 {
+  border-bottom: none;
 }
 
-.names{
-    font-size: 1.8rem;
-    font-family: monospace;
+.xsAndOs {
+  position: absolute;
+  font-size: 8rem;
+  font-family: "Courier New", Courier, monospace;
 }
 
-.scoreboardCounts{
-    width: 33%;
+.xsAndOsHover {
+  position: absolute;
+  font-size: 8rem;
+  font-family: "Courier New", Courier, monospace;
+  opacity: 20%;
+}
+
+.scoreBoardContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.scoreboardNames {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5%;
+  padding: 1%;
+}
+
+.scoreBoard {
+  width: 33%;
+}
+
+.names {
+  font-size: 1.8rem;
+  font-family: monospace;
+}
+
+.scoreboardCounts {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2%;
+  margin: 0 auto;
+  padding: 1%;
+}
+
+.counts {
+  font-size: 2.2rem;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 500;
+  margin-top: 1%;
+}
+
+.trashCan {
+  width: 5%;
+  font-size: 1.7rem;
+  text-align: center;
+  align-self: center;
+  margin-top: 1%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.trashCan:hover {
+  transform: scale(110%);
+}
+
+.button {
+  cursor: pointer;
+  height: 40px;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  border: 2px solid;
+  border-radius: 100px;
+  transition: 0.3s;
+}
+
+.circle {
+  width: 40%;
+  height: 70%;
+  border-radius: 70px;
+  background-color: black;
+  transition: 0.5s;
+  margin-left: 4%;
+}
+
+.circle.on {
+  transform: translatex(120%);
+  background-color: white;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: end;
+  padding: 0.5%;
+}
+
+@keyframes scaleModal {
+    0% {
+      transform: scale(0%);
+    }
+    100% {
+      transform: scale(100%);
+    }
+  }
+
+.modal {
+  position: absolute;
+  left: 20%;
+  top: 30%;
+  height: 30vh;
+  border: 1px solid;
+  width: 60%;
+  z-index: 1;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  animation: .5s ease-in 0s 1 scaleModal;
+}
+
+.modalDarkMode {
+  background-color: black;
+}
+
+.modalLightMode {
+  background-color: white;
+}
+
+.modalWinner{
+    font-size: 3rem;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.modalButtonsContainer{
     display: flex;
     justify-content: space-around;
-    margin-top: 1%;
+    width: 60%;
 }
 
-.counts{
-    font-size: 2.2rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.modalButtons{
+    height: 5vh;
+    width: 10vw;
+    background: none;
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 20%;
+    transition: .5s;
 }
 
+.modalButtonsDarkMode{
+    background-color: black;
+    color: white;
+}
+
+.modalButtons:hover{
+    transform: scale(110%);
+}

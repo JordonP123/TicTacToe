@@ -1,26 +1,31 @@
+import { useState } from "react";
 import audio from "./tink.wav";
+import { updateSquare } from './functions'
 
 const Square = (props) => {
   const { square, idx, setBoard, board, player, setPlayer, disableBoard } =
     props;
 
-  //logic to update a square if square does not have a value
-  function updateSquare() {
-    if (disableBoard) return;
-    const newBoard = [...board];
-    if (newBoard[idx] !== "") {
-      return;
-    } else {
-      player ? (newBoard[idx] = "X") : (newBoard[idx] = "O");
-      setBoard(newBoard);
-      setPlayer(!player);
-    }
-    new Audio(audio).play();
-  }
+  const [isHovering, setIsHovering] = useState(false);
 
   return (
-    <div onClick={updateSquare} className={`square ${"square" + [idx]}`}>
+    <div
+      onMouseOver={() => setIsHovering(true)}
+      onMouseOut={() => setIsHovering(false)}
+      onClick={() => updateSquare(disableBoard, board, idx, player, setBoard, setPlayer, audio)}
+      className={`square ${"square" + [idx]}`}
+    >
       <span className="xsAndOs">{square}</span>
+      {board[idx] === "" && (
+        <>
+          <span className="xsAndOsHover">
+            {isHovering && player ? "X" : ""}
+          </span>
+          <span className="xsAndOsHover">
+            {isHovering && !player ? "O" : ""}
+          </span>
+        </>
+      )}
     </div>
   );
 };

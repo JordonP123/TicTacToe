@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Square from "./sqaures";
+import { checkWinner, checkTie } from './functions'
 
 const Board = (props) => {
   const {
@@ -15,51 +16,17 @@ const Board = (props) => {
     player2Score,
     player1Score,
     tieScore,
+    setWinner
   } = props;
 
-  const winConditions = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-
-  //algorithm to check for a tie
-  function checkTie() {
-    return [...board].every(sqaure => sqaure === "X" || sqaure === "O");
-  }
-
-  //algorithm to know who is the winner
-  function checkWinner() {
-    for (let i = 0; i < 8; i++) {
-      let winCondition = winConditions[i];
-      let squareOne = board[winCondition[0]];
-      let squareTwo = board[winCondition[1]];
-      let squareThree = board[winCondition[2]];
-      if (squareOne === "" || squareTwo === "" || squareThree === "") {
-        continue;
-      } else if (squareOne === squareTwo && squareTwo === squareThree) {
-        if (player) {
-          setPlayer2Score(player2Score + 1);
-          setDisableBoard(true);
-          return true
-        } else {
-          setPlayer1Score(player1Score + 1);
-          setDisableBoard(true);
-          return true
-        }
-      }
-    }
-  }
-
   useEffect(() => {
-    checkWinner()
-    if(!checkWinner()){
-        if(checkTie())setTieScore(tieScore + 1)
+    checkWinner(board, player, setWinner, setPlayer2Score, setDisableBoard, setPlayer1Score, player1Score, player2Score)
+    if(!checkWinner(board, player, setWinner, setPlayer2Score, setDisableBoard, setPlayer1Score, player1Score, player2Score)){
+        if(checkTie(board)){
+          setWinner('You both suck! lol')
+          setTieScore(tieScore + 1)
+          setDisableBoard(true);
+        }
     }
   }, [board]); //eslint-disable-line
 
